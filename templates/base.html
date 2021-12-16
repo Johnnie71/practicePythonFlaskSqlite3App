@@ -7,6 +7,24 @@
 		<title>Document</title>
 	</head>
 	<body>
-		<h1>Hello World!</h1>
+		<h1>Add Books!</h1>
+
+		<div>
+			<form action="/" method="POST">
+				<label for="title">Title</label>
+				<input type="text" name="title" placeholder="Title" />
+				<label for="author">Author</label>
+				<input type="text" name="author" placeholder="Author" />
+				<label for="language">Language</label>
+				<input type="text" name="language" placeholder="Language" />
+				<button type="submit">Submiit</button>
+			</form>
+		</div>
+
+		<div>
+			{% for book in books%}
+			<p>{{book.title}}</p>
+			{% endfor %}
+		</div>
 	</body>
 </html>
