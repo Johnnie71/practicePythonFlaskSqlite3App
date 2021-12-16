@@ -30,8 +30,12 @@ def add():
     title = request.form.get('title')
     author = request.form.get("author")
     language = request.form.get("language")
-    print(title, author, language)
-    return "Successfull!"
+    sql = """INSERT INTO books(title, author, language) VALUES (?, ?, ?)"""
+
+    cursor.execute(sql, (title, author, language))
+    connect.commit()
+
+    return redirect(url_for("index"))
 
 if __name__ == "__main__":
     app.run(debug=True)
