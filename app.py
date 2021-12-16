@@ -1,5 +1,3 @@
-from re import template
-from sqlite3.dbapi2 import connect
 from flask import Flask, render_template, url_for, redirect, request
 import sqlite3
 
