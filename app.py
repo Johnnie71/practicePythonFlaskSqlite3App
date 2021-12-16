@@ -1,3 +1,4 @@
+from re import template
 from sqlite3.dbapi2 import connect
 from flask import Flask, render_template, url_for, redirect, request
 import sqlite3
@@ -19,7 +20,6 @@ def index():
         dict(id=row[0], title=row[1], author=row[2], language=row[3])
         for row in cursor.fetchall()
     ]
-    print(books)
     return render_template("base.html", books=books)
 
 @app.route("/add", methods=["POST"])
@@ -36,6 +36,21 @@ def add():
     connect.commit()
 
     return redirect(url_for("index"))
+
+@app.route("/book/<int:id>")
+def book(id):
+    print(id)
+    connect = db_connection()
+    cursor = connect.cursor()
+
+    cursor.execute("SELECT * FROM books WHERE id=?", (id,))
+
+    book = [
+        dict(id=row[0], title=row[1], author=row[2], language=row[3])
+        for row in cursor.fetchall()
+    ]
+
+    return render_template('book.html', book=book)
 
 if __name__ == "__main__":
     app.run(debug=True)
