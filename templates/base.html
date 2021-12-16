@@ -23,7 +23,10 @@
 
 		<div>
 			{% for book in books %}
-			<a href="/book/{{book.id}}">{{book.title}}</s>
+			<p>
+				<a href="/book/{{book.id}}">{{book.title}}</a>
+				<a href="/delete/{{book.id}}">Delete</a>
+			</p>
 			{% endfor %}
 		</div>
 	</body>
