@@ -22,5 +22,16 @@ def index():
     print(books)
     return render_template("base.html", books=books)
 
+@app.route("/add", methods=["POST"])
+def add():
+    connect = db_connection()
+    cursor = connect.cursor()
+
+    title = request.form.get('title')
+    author = request.form.get("author")
+    language = request.form.get("language")
+    print(title, author, language)
+    return "Successfull!"
+
 if __name__ == "__main__":
     app.run(debug=True)
